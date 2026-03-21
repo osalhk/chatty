@@ -1,9 +1,9 @@
-import bycrypt from "bcrypt"
+import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/User.js"
 import generateUniqueConnectCode from "../utils/generateUniqueConnectCode.js"
 
-class AuthenticationController {
+class AuthController {
     static async register(req, res) {
         try {
             const { fullName, username, email, password } = req.body;
@@ -22,8 +22,8 @@ class AuthenticationController {
                 return res.status(400).json({ message: "Email or username already in use" })
             }
 
-            const salt = await bycrypt.genSalt(10);
-            const hashedPassword = await bycrypt.hash(password, salt);
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
 
             const user = new User({
                 fullName,
@@ -55,7 +55,7 @@ class AuthenticationController {
                 return res.status(400).json({ message: "Invalid credentials" });
             }
 
-            const isMatch = await bycrypt.compare(password, user.password);
+            const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ message: "Invalid credentials" });
             }
@@ -115,4 +115,4 @@ class AuthenticationController {
     }
 }
 
-export default AuthenticationController;
+export default AuthController;
