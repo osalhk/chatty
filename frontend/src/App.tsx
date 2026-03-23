@@ -1,8 +1,18 @@
+import { Route, Routes } from "react-router"
+import Chat from "./pages/Chat/Chat"
+import Auth from "./pages/Auth/Auth"
+
+
+import{ Toaster } from "sonner"
 
 const App: React.FC = () => {
   return (
     <>
-    <p className="text-3xl text-red-500">   Welcome to my chat app </p>
+    <Routes>
+      <Route path="/" element={<Chat   />} />
+      <Route path="/auth" element={<Auth />} />  
+    </Routes>
+    <Toaster/>
     </>
   )
 }
