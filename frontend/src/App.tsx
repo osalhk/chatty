@@ -1,9 +1,8 @@
 
-
-function App() {
+const App: React.FC = () => {
   return (
     <>
-      Welcome to my chat app 
+    <p className="text-3xl text-red-500">   Welcome to my chat app </p>
     </>
   )
 }
