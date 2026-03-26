@@ -13,7 +13,7 @@ export type User = {
 interface AuthState {
     user: User | null;
     isAuthenticated: boolean;
-    setUser: (user: User | null) => void;
+    setUser: (user: User) => void;
     logout: () => void;
 }
 
